@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 const path = require("path");
+const cors = require('cors')
 
 if (process.env.NODE_ENV !== "production") {
    require("dotenv").config({ path: "./config/config.env" });
@@ -11,6 +12,9 @@ if (process.env.NODE_ENV !== "production") {
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cookieParser());
+app.use(cors({
+   origin: "https://social-media-101.netlify.app"
+}));
 
 // Importing Routes
 const postRoute = require("./routes/post");
